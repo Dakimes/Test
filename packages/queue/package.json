@@ -9,7 +9,7 @@
     "dev": "ts-node src/worker.ts"
   },
   "dependencies": {
-    "bullmq": "3.17.1",
+    "bullmq": "4.12.2",
     "dotenv": "16.4.1",
     "ioredis": "5.3.2",
     "pino": "8.17.0"
