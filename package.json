@@ -1,0 +1,15 @@
+{
+  "name": "tech-one-pager-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "postinstall": "npm run -w apps/web postinstall",
+    "lint": "npm run -w apps/web lint",
+    "test": "npm run -w apps/web test",
+    "test:e2e": "npm run -w apps/web test:e2e"
+  }
+}

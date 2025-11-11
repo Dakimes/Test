@@ -1,0 +1,21 @@
+{
+  "name": "tech-one-pager-queue",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "ts-node src/worker.ts"
+  },
+  "dependencies": {
+    "bullmq": "3.17.0",
+    "dotenv": "16.4.1",
+    "ioredis": "5.3.2",
+    "pino": "8.17.0"
+  },
+  "devDependencies": {
+    "ts-node": "10.9.2",
+    "typescript": "5.3.3"
+  }
+}
