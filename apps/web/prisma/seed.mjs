@@ -1,4 +1,8 @@
-import { prisma } from '@/lib/db';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient({
+  log: ['warn', 'error']
+});
 
 async function main() {
   const user = await prisma.user.upsert({
@@ -29,10 +33,15 @@ async function main() {
               purpose: 'Demonstrate seed',
               challenges: ['Adoption'],
               advantages: ['Efficiency'],
-              economics: { valueProps: ['Saves time'], sampleROI: '— / TODO' },
+              economics: { valueProps: ['Saves time'], sampleROI: '\u2014 / TODO' },
               navigation: { area: 'Innovation' },
               useCases: ['Demo'],
-              market: { TAM: '— / TODO', SAM: '— / TODO', SOM: '— / TODO', growth: { metric: '— / TODO', years: '— / TODO' } },
+              market: {
+                TAM: '\u2014 / TODO',
+                SAM: '\u2014 / TODO',
+                SOM: '\u2014 / TODO',
+                growth: { metric: '\u2014 / TODO', years: '\u2014 / TODO' }
+              },
               vendors: ['Vendor A'],
               references: []
             },
