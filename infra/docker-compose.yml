@@ -1,0 +1,56 @@
+version: '3.9'
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: infra/web.Dockerfile
+    env_file: .env.example
+    ports:
+      - '3000:3000'
+    volumes:
+      - ../storage:/app/storage
+    depends_on:
+      - db
+      - redis
+      - mailhog
+  worker:
+    build:
+      context: ..
+      dockerfile: infra/worker.Dockerfile
+    env_file: .env.example
+    depends_on:
+      - redis
+      - web
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: onepager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  redis:
+    image: redis:7
+    ports:
+      - '6379:6379'
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+  minio:
+    image: minio/minio:RELEASE.2023-12-02T10-51-33Z
+    command: server /data
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    volumes:
+      - minio_data:/data
+volumes:
+  postgres_data:
+  minio_data:
